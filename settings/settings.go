@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"io/fs"
 	"log"
+	"os"
 	"strings"
 	"time"
 
@@ -87,4 +88,21 @@ func GenerateKey() ([]byte, error) {
 	}
 
 	return b, nil
+}
+
+// GetOrGenerateKey returns JWT key with fallback logic.
+func GetOrGenerateKey() ([]byte, error) {
+	// Check for environment variable
+	if envKey := os.Getenv("FB_JWT_KEY"); envKey != "" {
+		log.Printf("Using JWT key from environment variable FB_JWT_KEY")
+		return []byte(envKey), nil
+	}
+
+	// Generate new key if environment variable is not available
+	log.Printf("No JWT key found in environment, generating new key")
+	key, err := GenerateKey()
+	if err != nil {
+		return nil, err
+	}
+	return key, nil
 }

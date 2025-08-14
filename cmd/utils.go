@@ -58,7 +58,7 @@ func getUint(flags *pflag.FlagSet, flag string) (uint, error) {
 }
 
 func generateKey() []byte {
-	k, err := settings.GenerateKey()
+	k, err := settings.GetOrGenerateKey()
 	if err != nil {
 		panic(err)
 	}
