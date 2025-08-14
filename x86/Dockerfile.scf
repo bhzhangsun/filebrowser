@@ -2,10 +2,9 @@
 FROM ccr.ccs.tencentyun.com/yubang/alpine:3.6
 # 安装依赖项
 RUN apk add --no-cache curl tar wget netcat-openbsd
-
-# 复制当前文件夹下的filebrowser二进制文件
-COPY filebrowser /usr/local/bin/filebrowser
-RUN chmod +x /usr/local/bin/filebrowser
+#下载File Browser（指定最新版本）
+RUN wget https://brucetest-1251000004.cos.ap-guangzhou.myqcloud.com/linux-amd64-filebrowser.tar.gz
+RUN tar -xf linux-amd64-filebrowser.tar.gz -C /usr/local/bin
 
 USER root
 
