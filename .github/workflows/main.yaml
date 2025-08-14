@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "master"
+      - "cloud-fc"
     tags:
       - "v*"
   pull_request:

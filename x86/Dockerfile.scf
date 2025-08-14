@@ -1,0 +1,23 @@
+# 使用轻量级Alpine基础锐像
+FROM ccr.ccs.tencentyun.com/yubang/alpine:3.6
+# 安装依赖项
+RUN apk add --no-cache curl tar wget netcat-openbsd
+
+# 复制当前文件夹下的filebrowser二进制文件
+COPY filebrowser /usr/local/bin/filebrowser
+RUN chmod +x /usr/local/bin/filebrowser
+
+USER root
+
+# 创建数据存储目录
+RUN mkdir -p /data /config
+
+# 配置环境变量
+ENV FB_PORT=9000
+ENV FB_ADDRESS=0.0.0.0
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+EXPOSE ${FB_PORT}
+# 设置入口点
+ENTRYPOINT ["filebrowser"]
