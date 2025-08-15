@@ -15,7 +15,8 @@ NC='\033[0m'
 # 配置
 JWT_KEY="tnimhTBaHqYjC3teCfBUM+E5ROXKYVpaCPXk9CNg/98QZ1fH2ceGFfd3M9uiYo9gfGF5CsIuiIEIhqVt/rEd6A=="
 ADMIN_USER="admin"
-ADMIN_PASS="admin123"
+ADMIN_PASS="Tencent123456!"
+PASSWORD_HASH='$2a$10$n8FMredXN5wPqG90zcR61uk6KA6Bqbf21.6oO/BJq4LO3BWRqX8T6'
 
 # 实例配置
 INSTANCES=(
@@ -100,6 +101,7 @@ start_instances() {
         log_info "启动实例 $name (端口: $port, 目录: $dir)"
         
         # 设置环境变量
+        export FB_ROOT="/tmp"
         export FB_JWT_KEY="$JWT_KEY"
         export FB_DATABASE="$dir/database/filebrowser.db"
         
@@ -108,9 +110,8 @@ start_instances() {
             --port "$port" \
             --address "127.0.0.1" \
             --database "$dir/database/filebrowser.db" \
-            --root "$dir/files" \
             --username "$ADMIN_USER" \
-            --password "$ADMIN_PASS" \
+            --password "$PASSWORD_HASH" \
             --log "stdout" \
             > "$dir/filebrowser.log" 2>&1 &
         

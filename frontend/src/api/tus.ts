@@ -106,7 +106,7 @@ export async function useTus(content: ApiContent) {
 }
 
 function isTusSupported() {
-  return tus.isSupported === true;
+  return tus.isSupported === false;
 }
 
 export function abortAllUploads() {
