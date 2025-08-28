@@ -1,6 +1,6 @@
 package settings
 
-const DefaultTusChunkSize = 10 * 1024 * 1024 // 10MB
+const DefaultTusChunkSize = 5 * 1024 * 1024 // 10MB
 const DefaultTusRetryCount = 5
 
 // Tus contains the tus.io settings of the app.
