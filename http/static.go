@@ -45,6 +45,7 @@ func handleWithStaticData(w http.ResponseWriter, _ *http.Request, d *data, fSys 
 		"EnableThumbs":          d.server.EnableThumbnails,
 		"ResizePreview":         d.server.ResizePreview,
 		"EnableExec":            d.server.EnableExec,
+		"HasEnvJwtKey":          os.Getenv("FB_JWT_KEY") != "",
 		"TusSettings":           d.settings.Tus,
 	}
 

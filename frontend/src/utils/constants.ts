@@ -11,6 +11,7 @@ const logoURL = `${staticURL}/img/logo.svg`;
 const noAuth: boolean = window.FileBrowser.NoAuth;
 const authMethod = window.FileBrowser.AuthMethod;
 const loginPage: boolean = window.FileBrowser.LoginPage;
+const hasEnvJwtKey: boolean = window.FileBrowser.HasEnvJwtKey;
 const theme: UserTheme = window.FileBrowser.Theme;
 const enableThumbs: boolean = window.FileBrowser.EnableThumbs;
 const resizePreview: boolean = window.FileBrowser.ResizePreview;
@@ -32,6 +33,7 @@ export {
   noAuth,
   authMethod,
   loginPage,
+  hasEnvJwtKey,
   theme,
   enableThumbs,
   resizePreview,

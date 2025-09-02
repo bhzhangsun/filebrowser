@@ -2,7 +2,11 @@
   <div v-show="active" @click="closeHovers" class="overlay"></div>
   <nav :class="{ active }">
     <template v-if="isLoggedIn">
-      <button @click="toAccountSettings" class="action">
+      <button
+        v-if="!hasEnvJwtKey"
+        @click="toAccountSettings"
+        class="action"
+      >
         <i class="material-icons">person</i>
         <span>{{ user.username }}</span>
       </button>
@@ -38,7 +42,7 @@
         </button>
       </div>
 
-      <div v-if="user.perm.admin">
+      <div v-if="user.perm.admin && !hasEnvJwtKey">
         <button
           class="action"
           @click="toGlobalSettings"
@@ -128,6 +132,7 @@ import {
   disableUsedPercentage,
   noAuth,
   loginPage,
+  hasEnvJwtKey,
 } from "@/utils/constants";
 import { files as api } from "@/api";
 import ProgressBar from "@/components/ProgressBar.vue";
@@ -156,6 +161,7 @@ export default {
     version: () => version,
     disableExternal: () => disableExternal,
     disableUsedPercentage: () => disableUsedPercentage,
+    hasEnvJwtKey: () => hasEnvJwtKey,
     canLogout: () => !noAuth && loginPage,
   },
   methods: {
